@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="WARSI MART - Explore shopping products from Amazon, Meesho and Flipkart.">
+<meta name="theme-color" content="#090909">
+<title>WARSI MART | Royal Shopping Experience</title>
+
+<style>
+:root{
+ --black:#090909;
+ --panel:#151515;
+ --gold:#d6ad55;
+ --lightgold:#f8df9b;
+ --white:#fff;
+ --muted:#aaa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ background:var(--black);
+ color:var(--white);
+ font-family:Arial,Helvetica,sans-serif;
+ overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.gold{color:var(--gold)}
+.topbar{
+ background:#050505;
+ text-align:center;
+ padding:9px 10px;
+ font-size:11px;
+ letter-spacing:2px;
+ color:var(--lightgold);
+ border-bottom:1px solid #493919;
+}
+header{
+ background:linear-gradient(110deg,#090909,#19150d,#080808);
+ padding:19px 5%;
+ border-bottom:1px solid #5b4724;
+}
+.head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
+ flex-wrap:wrap;
+}
+.logo{
+ font-family:Georgia,serif;
+ font-size:30px;
+ font-weight:bold;
+ letter-spacing:2px;
+ color:#fff;
+}
+.logo span{color:var(--gold)}
+.logo-sub{
+ color:#bca46e;
+ font-size:9px;
+ letter-spacing:5px;
+ margin-top:5px;
+}
+.head-right{
+ font-size:12px;
+ color:#d9c18b;
+ letter-spacing:1px;
+}
+nav{
+ background:#111;
+ display:flex;
+ justify-content:center;
+ gap:30px;
+ padding:14px 8px;
+ border-bottom:1px solid #302718;
+ overflow-x:auto;
+ white-space:nowrap;
+}
+nav a{
+ font-size:12px;
+ letter-spacing:1px;
+ color:#ddd;
+}
+nav a:hover{color:var(--gold)}
+.search-wrap{
+ padding:18px 5%;
+ display:flex;
+ gap:10px;
+}
+.search-wrap input{
+ flex:1;
+ min-width:0;
+ background:#181818;
+ color:#fff;
+ border:1px solid #755a2b;
+ border-radius:30px;
+ padding:14px 19px;
+ outline:none;
+ font-size:14px;
+}
+.search-wrap button{
+ border:0;
+ border-radius:30px;
+ padding:0 22px;
+ background:linear-gradient(120deg,#a77b27,#f4d88f,#b38735);
+ color:#160f05;
+ font-weight:bold;
+}
+.hero{
+ margin:10px 5% 30px;
+ min-height:340px;
+ border:1px solid #92703a;
+ border-radius:18px;
+ overflow:hidden;
+ position:relative;
+ display:flex;
+ align-items:center;
+ background:
+ radial-gradient(circle at 80% 45%,#654a20 0%,transparent 30%),
+ linear-gradient(115deg,#090909 10%,#1b160e 65%,#0a0a0a);
+}
+.hero:before{
+ content:"";
+ position:absolute;
+ width:270px;height:270px;
+ border:1px solid #b58a3b;
+ border-radius:50%;
+ right:7%;top:30px;
+ box-shadow:0 0 25px #bd943f55,inset 0 0 35px #b58a3f33;
+}
+.hero:after{
+ content:"✦";
+ position:absolute;
+ right:16%;top:95px;
+ font-size:115px;
+ color:#e3c47c;
+ text-shadow:0 0 40px #d6ad55;
+}
+.hero-content{
+ position:relative;
+ z-index:2;
+ padding:45px 7%;
+ max-width:650px;
+}
+.eyebrow{
+ color:var(--gold);
+ font-size:11px;
+ letter-spacing:4px;
+ margin-bottom:18px;
+}
+.hero h1{
+ font-family:Georgia,serif;
+ font-size:clamp(32px,5vw,56px);
+ line-height:1.12;
+ margin-bottom:15px;
+}
+.hero h1 span{color:var(--gold)}
+.hero p{
+ color:#c9c1b1;
+ font-size:14px;
+ line-height:1.8;
+ max-width:440px;
+}
+.gold-btn{
+ display:inline-block;
+ margin-top:24px;
+ padding:14px 25px;
+ border:0;
+ border-radius:4px;
+ background:linear-gradient(110deg,#a77928,#f8df9b,#b88b36);
+ color:#171006;
+ font-weight:bold;
+ font-size:12px;
+ letter-spacing:1px;
+}
+.gold-btn:hover{filter:brightness(1.15)}
+.section{
+ padding:22px 5%;
+}
+.section-title{
+ text-align:center;
+ margin-bottom:25px;
+}
+.section-title small{
+ color:var(--gold);
+ letter-spacing:4px;
+ font-size:10px;
+}
+.section-title h2{
+ font-family:Georgia,serif;
+ font-size:28px;
+ margin-top:9px;
+}
+.section-title p{
+ color:#aaa;
+ font-size:12px;
+ margin-top:9px;
+}
+.categories{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:14px;
+}
+.category{
+ background:linear-gradient(145deg,#1b1b1b,#101010);
+ border:1px solid #44351d;
+ border-radius:12px;
+ padding:22px 8px;
+ text-align:center;
+ transition:.3s;
+ cursor:pointer;
+}
+.category:hover{
+ transform:translateY(-5px);
+ border-color:var(--gold);
+ box-shadow:0 8px 25px #d6ad5522;
+}
+.category .symbol{
+ font-size:31px;
+ display:block;
+ margin-bottom:11px;
+}
+.category b{
+ font-size:12px;
+ color:#eee0bd;
+}
+.divider{
+ height:1px;
+ margin:28px 5%;
+ background:linear-gradient(90deg,transparent,#9a7638,transparent);
+}
+.platforms{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:13px;
+}
+.platform-card{
+ border:1px solid #4b3a20;
+ border-radius:12px;
+ padding:20px 8px;
+ text-align:center;
+ background:linear-gradient(140deg,#1d1b16,#101010);
+}
+.platform-card h3{
+ color:var(--lightgold);
+ font-family:Georgia,serif;
+ font-size:21px;
+}
+.platform-card p{
+ color:#aaa;
+ font-size:11px;
+ margin-top:8px;
+}
+.filters{
+ display:flex;
+ justify-content:center;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-bottom:24px;
+}
+.filter{
+ padding:10px 19px;
+ background:#171717;
+ color:#d7c59b;
+ border:1px solid #5b4728;
+ border-radius:30px;
+ font-size:12px;
+}
+.filter.active,.filter:hover{
+ color:#120d04;
+ background:linear-gradient(110deg,#b98c38,#f5dda0);
+}
+.products{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:16px;
+}
+.product{
+ background:linear-gradient(145deg,#1a1a1a,#101010);
+ border:1px solid #3e321f;
+ border-radius:12px;
+ overflow:hidden;
+ transition:.3s;
+}
+.product:hover{
+ transform:translateY(-5px);
+ border-color:#c49a4b;
+ box-shadow:0 10px 25px #d6ad5520;
+}
+.product-image{
+ height:170px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:radial-gradient(circle,#3a3020,#151515 70%);
+ font-size:65px;
+}
+.product-info{padding:14px}
+.product h3{
+ font-size:14px;
+ line-height:1.5;
+ min-height:42px;
+ color:#fff;
+}
+.platform-tag{
+ display:inline-block;
+ padding:5px 9px;
+ margin:10px 0;
+ border:1px solid #80622e;
+ border-radius:3px;
+ font-size:10px;
+ color:#e8ca84;
+}
+.price{
+ font-size:11px;
+ color:#aaa;
+ margin-bottom:13px;
+}
+.buy{
+ display:block;
+ text-align:center;
+ padding:11px 8px;
+ border-radius:5px;
+ background:linear-gradient(110deg,#a77928,#f4d990,#b88b36);
+ color:#160f05;
+ font-size:11px;
+ font-weight:bold;
+ letter-spacing:.5px;
+}
+.empty{
+ display:none;
+ text-align:center;
+ padding:35px;
+ color:#d7c59b;
+}
+.features{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
+}
+.feature{
+ text-align:center;
+ padding:20px 8px;
+ background:#151515;
+ border:1px solid #3d301d;
+ border-radius:10px;
+}
+.feature span{font-size:25px}
+.feature h3{
+ color:var(--lightgold);
+ font-size:12px;
+ margin-top:10px;
+}
+.feature p{
+ color:#999;
+ font-size:10px;
+ margin-top:6px;
+ line-height:1.6;
+}
+.disclosure{
+ margin:20px 5%;
+ padding:16px;
+ background:#18150f;
+ border:1px solid #66502c;
+ border-radius:8px;
+ color:#c7b68f;
+ font-size:11px;
+ line-height:1.8;
+}
+footer{
+ background:#050505;
+ border-top:1px solid #594525;
+ text-align:center;
+ padding:35px 15px 85px;
+}
+.footer-logo{
+ font-family:Georgia,serif;
+ font-size:26px;
+ font-weight:bold;
+}
+.footer-logo span{color:var(--gold)}
+footer p{
+ font-size:11px;
+ color:#999;
+ line-height:2;
+ margin-top:10px;
+}
+footer .footer-links{
+ margin-top:15px;
+ color:#d7bd7b;
+ font-size:11px;
+}
+.bottom-nav{display:none}
+@media(max-width:800px){
+ .products{grid-template-columns:repeat(2,1fr)}
+ .hero{min-height:300px}
+ .hero:before{right:-90px;opacity:.6}
+ .hero:after{right:8%;font-size:85px}
+}
+@media(max-width:500px){
+ header{padding:17px 5%}
+ .logo{font-size:25px}
+ .head-right{font-size:10px}
+ nav{justify-content:flex-start;gap:22px;padding-left:5%}
+ .hero{margin:8px 4% 22px;min-height:320px}
+ .hero-content{padding:30px 7%}
+ .hero h1{font-size:35px}
+ .hero:before{right:-130px;top:55px}
+ .hero:after{right:2%;top:105px;font-size:65px}
+ .section{padding:18px 4%}
+ .categories{grid-template-columns:repeat(2,1fr)}
+ .products{gap:10px}
+ .product-image{height:125px;font-size:51px}
+ .product-info{padding:10px}
+ .product h3{font-size:12px}
+ .platform-card h3{font-size:17px}
+ .features{grid-template-columns:1fr}
+ .bottom-nav{
+  display:flex;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:#090909;
+  border-top:1px solid #80622e;
+  justify-content:space-around;
+  padding:12px 4px;
+  z-index:10;
+ }
+ .bottom-nav a{
+  color:#d6bd80;
+  font-size:10px;
+  text-align:center;
+ }
+ .bottom-nav span{
+  display:block;
+  font-size:18px;
+  margin-bottom:4px;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  ✦ THE ROYAL SHOPPING EXPERIENCE ✦
+</div>
+
+<header>
+ <div class="head">
+  <div>
+   <div class="logo">WARSI <span>MART</span></div>
+   <div class="logo-sub">SHOPPING DESTINATION</div>
+  </div>
+  <div class="head-right">✦ STYLE • QUALITY • CHOICE ✦</div>
+ </div>
+</header>
+
+<nav>
+ <a href="#home">HOME</a>
+ <a href="#categories">CATEGORIES</a>
+ <a href="#platforms">SHOPPING SITES</a>
+ <a href="#shopping">PRODUCTS</a>
+ <a href="#about">ABOUT</a>
+</nav>
+
+<div class="search-wrap">
+ <input id="search" type="search" placeholder="Search your favourite products...">
+ <button onclick="searchProducts()">SEARCH</button>
+</div>
+
+<section class="hero" id="home">
+ <div class="hero-content">
+  <div class="eyebrow">WELCOME TO THE WORLD OF SHOPPING</div>
+  <h1>Discover The<br><span>Royal Choice.</span></h1>
+  <p>Explore amazing shopping choices from Amazon, Meesho and Flipkart — all in one place.</p>
+  <a href="#shopping" class="gold-btn">EXPLORE COLLECTION →</a>
+ </div>
+</section>
+
+<section class="section" id="categories">
+ <div class="section-title">
+  <small>EXPLORE COLLECTIONS</small>
+  <h2>Shop By Category</h2>
+  <p>Find what you love, in just one click.</p>
+ </div>
+
+ <div class="categories">
+  <div class="category" onclick="chooseCategory('Fashion')">
+   <span class="symbol">👗</span><b>FASHION</b>
+  </div>
+  <div class="category" onclick="chooseCategory('Shoes')">
+   <span class="symbol">👟</span><b>FOOTWEAR</b>
+  </div>
+  <div class="category" onclick="chooseCategory('Electronics')">
+   <span class="symbol">📱</span><b>ELECTRONICS</b>
+  </div>
+  <div class="category" onclick="chooseCategory('Home')">
+   <span class="symbol">🏡</span><b>HOME & LIVING</b>
+  </div>
+  <div class="category" onclick="chooseCategory('Beauty')">
+   <span class="symbol">💄</span><b>BEAUTY</b>
+  </div>
+  <div class="category" onclick="chooseCategory('Watches')">
+   <span class="symbol">⌚</span><b>WATCHES</b>
+  </div>
+  <div class="category" onclick="chooseCategory('Kids')">
+   <span class="symbol">🧸</span><b>KIDS</b>
+  </div>
+  <div class="category" onclick="chooseCategory('All')">
+   <span class="symbol">✨</span><b>ALL PRODUCTS</b>
+  </div>
+ </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="platforms">
+ <div class="section-title">
+  <small>OUR SHOPPING PARTNERS</small>
+  <h2>Explore Top Stores</h2>
+  <p>Discover products from popular shopping platforms.</p>
+ </div>
+ <div class="platforms">
+  <div class="platform-card">
+   <h3>amazon</h3>
+   <p>Explore Amazon Products</p>
+  </div>
+  <div class="platform-card">
+   <h3>meesho</h3>
+   <p>Explore Meesho Products</p>
+  </div>
+  <div class="platform-card">
+   <h3>Flipkart</h3>
+   <p>Explore Flipkart Products</p>
+  </div>
+ </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="shopping">
+ <div class="section-title">
+  <small>HANDPICKED FOR YOU</small>
+  <h2>Featured Products</h2>
+  <p>Explore our sample shopping collection.</p>
+ </div>
+
+ <div class="filters">
+  <button class="filter active" onclick="choosePlatform('All',this)">ALL</button>
+  <button class="filter" onclick="choosePlatform('Amazon',this)">AMAZON</button>
+  <button class="filter" onclick="choosePlatform('Meesho',this)">MEESHO</button>
+  <button class="filter" onclick="choosePlatform('Flipkart',this)">FLIPKART</button>
+ </div>
+
+ <div class="products" id="products">
+
+  <div class="product" data-name="mens fashion shirt" data-category="Fashion" data-platform="Amazon">
+   <div class="product-image">👔</div>
+   <div class="product-info">
+    <h3>Men's Premium Fashion Shirt</h3>
+    <span class="platform-tag">AMAZON</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.amazon.in/s?k=mens+fashion+shirt" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="ladies kurti dress" data-category="Fashion" data-platform="Meesho">
+   <div class="product-image">👗</div>
+   <div class="product-info">
+    <h3>Women's Stylish Kurti</h3>
+    <span class="platform-tag">MEESHO</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.meesho.com/search?q=ladies%20kurti" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="sports shoes sneakers" data-category="Shoes" data-platform="Flipkart">
+   <div class="product-image">👟</div>
+   <div class="product-info">
+    <h3>Premium Sports Shoes</h3>
+    <span class="platform-tag">FLIPKART</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.flipkart.com/search?q=sports+shoes" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="smartphone mobile phone" data-category="Electronics" data-platform="Amazon">
+   <div class="product-image">📱</div>
+   <div class="product-info">
+    <h3>Smartphone Collection</h3>
+    <span class="platform-tag">AMAZON</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.amazon.in/s?k=smartphones" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="home decoration decor" data-category="Home" data-platform="Meesho">
+   <div class="product-image">🏺</div>
+   <div class="product-info">
+    <h3>Elegant Home Decoration</h3>
+    <span class="platform-tag">MEESHO</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.meesho.com/search?q=home%20decor" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="wireless earbuds headphones" data-category="Electronics" data-platform="Flipkart">
+   <div class="product-image">🎧</div>
+   <div class="product-info">
+    <h3>Wireless Earbuds</h3>
+    <span class="platform-tag">FLIPKART</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.flipkart.com/search?q=wireless+earbuds" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="ladies handbag purse" data-category="Fashion" data-platform="Meesho">
+   <div class="product-image">👜</div>
+   <div class="product-info">
+    <h3>Women's Designer Handbag</h3>
+    <span class="platform-tag">MEESHO</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.meesho.com/search?q=ladies%20handbag" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="kitchen cookware home" data-category="Home" data-platform="Amazon">
+   <div class="product-image">🍳</div>
+   <div class="product-info">
+    <h3>Kitchen Essentials</h3>
+    <span class="platform-tag">AMAZON</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.amazon.in/s?k=kitchen+essentials" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="beauty makeup skincare" data-category="Beauty" data-platform="Amazon">
+   <div class="product-image">💄</div>
+   <div class="product-info">
+    <h3>Beauty & Skincare Collection</h3>
+    <span class="platform-tag">AMAZON</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.amazon.in/s?k=beauty+products" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="wrist watch watches" data-category="Watches" data-platform="Flipkart">
+   <div class="product-image">⌚</div>
+   <div class="product-info">
+    <h3>Classic Wrist Watches</h3>
+    <span class="platform-tag">FLIPKART</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.flipkart.com/search?q=wrist+watches" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="kids toys children" data-category="Kids" data-platform="Meesho">
+   <div class="product-image">🧸</div>
+   <div class="product-info">
+    <h3>Kids Toys Collection</h3>
+    <span class="platform-tag">MEESHO</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.meesho.com/search?q=kids%20toys" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+  <div class="product" data-name="sunglasses fashion" data-category="Fashion" data-platform="Amazon">
+   <div class="product-image">🕶️</div>
+   <div class="product-info">
+    <h3>Premium Sunglasses</h3>
+    <span class="platform-tag">AMAZON</span>
+    <div class="price">Check latest price on store</div>
+    <a class="buy" href="https://www.amazon.in/s?k=sunglasses" target="_blank" rel="noopener">VIEW PRODUCT ↗</a>
+   </div>
+  </div>
+
+ </div>
+
+ <div class="empty" id="empty">No products found. Try another search.</div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="about">
+ <div class="section-title">
+  <small>WHY WARSI MART</small>
+  <h2>A Better Way To Explore Shopping</h2>
+ </div>
+ <div class="features">
+  <div class="feature">
+   <span>✦</span>
+   <h3>Multiple Stores</h3>
+   <p>Discover shopping options from different platforms.</p>
+  </div>
+  <div class="feature">
+   <span>♛</span>
+   <h3>Easy Shopping</h3>
+   <p>Explore products through one simple website.</p>
+  </div>
+  <div class="feature">
+   <span>🔗</span>
+   <h3>Direct Store Links</h3>
+   <p>Visit the original shopping platform to purchase.</p>
+  </div>
+ </div>
+</section>
+
+<div class="disclosure">
+ <b>IMPORTANT SHOPPING DISCLOSURE</b><br>
+ WARSI MART is an independent product discovery website and is not owned by Amazon, Meesho or Flipkart. Product links shown currently are sample search links, not affiliate links. We may earn a commission from qualifying purchases through approved affiliate links in the future. Product prices and availability are confirmed on the original shopping websites.
+</div>
+
+<footer>
+ <div class="footer-logo">WARSI <span>MART</span></div>
+ <p>YOUR ROYAL SHOPPING DESTINATION</p>
+ <div class="footer-links">HOME &nbsp; | &nbsp; PRODUCTS &nbsp; | &nbsp; ABOUT</div>
+ <p>Amazon • Meesho • Flipkart</p>
+ <p>© 2026 WARSI MART. All rights reserved.</p>
+</footer>
+
+<div class="bottom-nav">
+ <a href="#home"><span>⌂</span>Home</a>
+ <a href="#categories"><span>▦</span>Categories</a>
+ <a href="#shopping"><span>✧</span>Products</a>
+ <a href="#about"><span>♛</span>About</a>
+</div>
+
+<script>
+let selectedPlatform="All";
+let selectedCategory="All";
+
+function filterProducts(){
+ const query=document.getElementById("search").value.toLowerCase().trim();
+ const cards=document.querySelectorAll(".product");
+ let count=0;
+
+ cards.forEach(card=>{
+  const name=card.dataset.name.toLowerCase();
+  const category=card.dataset.category;
+  const platform=card.dataset.platform;
+
+  const show=
+   name.includes(query) &&
+   (selectedPlatform==="All" || platform===selectedPlatform) &&
+   (selectedCategory==="All" || category===selectedCategory);
+
+  card.style.display=show?"block":"none";
+  if(show)count++;
+ });
+
+ document.getElementById("empty").style.display=count?"none":"block";
+}
+
+function searchProducts(){
+ selectedCategory="All";
+ filterProducts();
+ document.getElementById("shopping").scrollIntoView({behavior:"smooth"});
+}
+
+function choosePlatform(platform,button){
+ selectedPlatform=platform;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ filterProducts();
+}
+
+function chooseCategory(category){
+ selectedCategory=category;
+ selectedPlatform="All";
+ document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+ document.querySelector(".filter").classList.add("active");
+ filterProducts();
+ document.getElementById("shopping").scrollIntoView({behavior:"smooth"});
+}
+
+document.getElementById("search").addEventListener("input",filterProducts);
+</script>
+
+</body>
+</html>
